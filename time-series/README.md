@@ -16,10 +16,16 @@ Due to the booming housing market in the state, a real estate investment firm ha
 
 The data used in this analysis come from [Zillow Research](https://www.zillow.com/research/data/) which aggregates housing data. The data set contains 6 variables describing property sale including zip code, city, state, metro area, size rank It includes 14,723 individual entries recorded daily from 1996-2018.
 
+<img src="./images/all_zipcodes.png">
+
+> The figure above shows home value by zipcode over time
+
 
 ## Methods
 
 In this analysis, I create and iterate through several SARIMA models for each zip code time series to create forecasts of future home values. With those forecasted values, I calculated potential future ROI of investing in each zip code. I improved my model's iterations by adjusting parameters and differencing the data. This was done in an attempt to increase the accuracy of the model's forecasts.
+
+
 
 
 ## Results
