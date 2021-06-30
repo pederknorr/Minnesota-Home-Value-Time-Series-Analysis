@@ -1,72 +1,69 @@
 
-# Mod 4 Project - Starter Notebook
+# Minnesota Home Value Time Series Analysis
 
-This notebook has been provided to you so that you can make use of the following starter code to help with the trickier parts of preprocessing the Zillow dataset. 
+**Authors**: Peder Norr
 
-The notebook contains a rough outline the general order you'll likely want to take in this project. You'll notice that most of the areas are left blank. This is so that it's more obvious exactly when you should make use of the starter code provided for preprocessing. 
+### Overview:
 
-**_NOTE:_** The number of empty cells are not meant to infer how much or how little code should be involved in any given step--we've just provided a few for your convenience. Add, delete, and change things around in this notebook as needed!
+Real estate continues to be one of the most lucrative and secure investment vehicles available. This proposal contains an analysis of Minnesota home value time series data in order to provide a real estate investment firm the identification of the best locations to invest in Minnesota. Initial analysis of the data shows that there are 5 zip codes that provide the biggest opportunity for return on investment. The real estate investment firm can use this analysis to make their entry in the Minnesotan market more effective and profitable.
 
-# Some Notes Before Starting
+### Business problem:
 
-This project will be one of the more challenging projects you complete in this program. This is because working with Time Series data is a bit different than working with regular datasets. In order to make this a bit less frustrating and help you understand what you need to do (and when you need to do it), we'll quickly review the dataset formats that you'll encounter in this project. 
-
-## Wide Format vs Long Format
-
-If you take a look at the format of the data in `zillow_data.csv`, you'll notice that the actual Time Series values are stored as separate columns. Here's a sample: 
-
-<img src='../images/df_head.png'>
-
-You'll notice that the first seven columns look like any other dataset you're used to working with. However, column 8 refers to the median housing sales values for April 1996, column 9 for May 1996, and so on. This This is called **_Wide Format_**, and it makes the dataframe intuitive and easy to read. However, there are problems with this format when it comes to actually learning from the data, because the data only makes sense if you know the name of the column that the data can be found it. Since column names are metadata, our algorithms will miss out on what dates each value is for. This means that before we pass this data to our ARIMA model, we'll need to reshape our dataset to **_Long Format_**. Reshaped into long format, the dataframe above would now look like:
-
-<img src='../images/melted1.png'>
-
-There are now many more rows in this dataset--one for each unique time and zipcode combination in the data! Once our dataset is in this format, we'll be able to train an ARIMA model on it. The method used to convert from Wide to Long is `pd.melt()`, and it is common to refer to our dataset as 'melted' after the transition to denote that it is in long format. 
-
-# Helper Functions Provided
-
-Melting a dataset can be tricky if you've never done it before, so you'll see that we have provided a sample function, `melt_data()`, to help you with this step below. Also provided is:
-
-* `get_datetimes()`, a function to deal with converting the column values for datetimes as a pandas series of datetime objects
-* Some good parameters for matplotlib to help make your visualizations more readable. 
-
-Good luck!
+Due to the booming housing market in the state, a real estate investment firm has decided to invest in property in Minnesota. However, they are unfamiliar with the state. They want to identify the top 5 best zip codes in the state in which to invest. This proposal will identify the top 5 zip codes for investment by calculating future potential return on investment.
 
 
-# Step 1: Load the Data/Filtering for Chosen Zipcodes
+### Data:
 
-# Step 2: Data Preprocessing
+The data used in this analysis come from [Zillow Research](https://www.zillow.com/research/data/) which aggregates housing data. The data set contains 6 variables describing property sale including zip code, city, state, metro area, size rank It includes 14,723 individual entries recorded daily from 1996-2018.
 
 
-```python
-def get_datetimes(df):
-    return pd.to_datetime(df.columns.values[1:], format='%Y-%m')
+## Methods
+
+In this analysis, I create and iterate through several SARIMA models for each zip code time series to create forecasts of future home values. With those forecasted values, I calculated potential future ROI of investing in each zip code. I improved my model's iterations by adjusting parameters and differencing the data. This was done in an attempt to increase the accuracy of the model's forecasts.
+
+
+## Results
+
+
+
+## Recommendations:
+
+Based on the forecasted ROI percentages calculated from the SARIMA model forecasts, I would provide the following recommendations to the real estate investment firm as they look to invest in Minnesota:
+
+- **Zip Code 55415** Zip code 55415 had a forecasted ROI of 45.8% after three years, with a lower confidence interval of 12.8% and an upper confidence interval of 78.7%. The firm should invest in this zip code.
+
+- **Zip Code 56314** Zip code 56314 had a forecasted ROI of 29.5% after three years, with a lower confidence interval of -1.7% and an upper confidence interval of 52.7%. The firm should invest in this zip code.
+
+- **Zip Code 56570** Zip code 56570 had a forecasted ROI of 23.4% after three years, with a lower confidence interval of -24.8% and an upper confidence interval of 71.6%. The firm should invest in this zip code.
+
+- **Zip Code 56578** Zip code 56578 had a forecasted ROI of 21.7% after three years, with a lower confidence interval of -9.3% and an upper confidence interval of 52.7%. The firm should invest in this zip code.
+
+- **Zip Code 55449** Zip code 55449 had a forecasted ROI of 21.4% after three years, with a lower confidence interval of -8.6% and an upper confidence interval of 51.3%. The firm should invest in this zip code.
+
+
+## Limitations & Next Steps
+
+However, the SARIMA models and analysis are not complete solutions, nor are they perfect. The time series struggle to perfectly meet the assumption of stationarity, and as such the models will not be completely accurate.
+
+I could improve this analysis in the future by further transforming the data to achieve stationarity, further tweaking the hyperparameters of the models, or by experimenting with other models like recurrent neural networks, Prophet, and Greykite.
+
+
+### For further information
+Please review the narrative of our analysis in [my jupyter notebook](./minnesota_home_value_time_series_analysis.ipynb) or review our [presentation](./minnesota_home_value_time_series_analysis_deck.pdf)
+
+For any additional questions, please contact Peder Norr at <norr.peder@gmail.com>
+
+
+##### Repository Structure:
+
 ```
 
-# Step 3: EDA and Visualization
+├── README.md                         <- The top-level README for reviewers of this project.
+├── minnesota_home_value_time_series_analysis.ipynb   <- narrative documentation of analysis in jupyter notebook
+├── minnesota_home_value_time_series_analysis_deck.pdf   <- pdf version of project presentation
+└── images
+    └── images                        <- both sourced externally and generated from code
+└── data
+    └── 
 
-
-```python
-font = {'family' : 'normal',
-        'weight' : 'bold',
-        'size'   : 22}
-
-matplotlib.rc('font', **font)
-
-# NOTE: if you visualizations are too cluttered to read, try calling 'plt.gcf().autofmt_xdate()'!
 ```
-
-# Step 4: Reshape from Wide to Long Format
-
-
-```python
-def melt_data(df):
-    melted = pd.melt(df, id_vars=['RegionName', 'City', 'State', 'Metro', 'CountyName'], var_name='time')
-    melted['time'] = pd.to_datetime(melted['time'], infer_datetime_format=True)
-    melted = melted.dropna(subset=['value'])
-    return melted.groupby('time').aggregate({'value':'mean'})
-```
-
-# Step 5: ARIMA Modeling
-
-# Step 6: Interpreting Results
