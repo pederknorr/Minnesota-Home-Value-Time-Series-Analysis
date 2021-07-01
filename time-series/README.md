@@ -51,9 +51,9 @@ Zip Code 55413: 26.7% 24 month ROI
 
 > The figure above shows 24 month home value forecast and confidence interval
 
-Zip Code 55672: 22.8% 24 month ROI
+Zip Code 56672: 22.8% 24 month ROI
 
-<img src="./images/55672_forecast.png">
+<img src="./images/56672_forecast.png">
 
 > The figure above shows 24 month home value forecast and confidence interval
 
@@ -70,7 +70,7 @@ Based on the forecasted ROI percentages calculated from the SARIMA model forecas
 
 - **Zip Code 55413** Zip code 55413 had a forecasted ROI of 26.7% after three years, with a lower confidence interval of -9.8% and an upper confidence interval of 63.3%. The firm should invest in this zip code.
 
-- **Zip Code 55672** Zip code 55672 had a forecasted ROI of 22.8% after three years, with a lower confidence interval of -50% and an upper confidence interval of 96%. The firm should invest in this zip code.
+- **Zip Code 56672** Zip code 55672 had a forecasted ROI of 22.8% after three years, with a lower confidence interval of -50% and an upper confidence interval of 96%. The firm should invest in this zip code.
 
 ## Limitations & Next Steps
 
